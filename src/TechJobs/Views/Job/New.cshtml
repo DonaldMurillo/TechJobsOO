@@ -1,18 +1,33 @@
 ﻿@model TechJobs.ViewModels.NewJobViewModel
 
+<h1>New Job</h1>
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 <div asp-validation-summary="All"></div>
 
 <form asp-controller="Job" asp-action="New" method="post">
     <div class="form-group">
         <label asp-for="Name"></label>
         <input class="form-control" asp-for="Name" />
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
     </div>
+
     <div class="form-group">
         <label asp-for="EmployerID"></label>
         <select asp-for="EmployerID" asp-items="Model.Employers"></select>
     </div>
-
-    @{ 
+    <div class="form-group">
+        <label asp-for="JobLocation"></label>
+        <select asp-for="JobLocation" asp-items="Model.Locations"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="JobCoreCompetency"></label>
+        <select asp-for="JobCoreCompetency" asp-items="Model.CoreCompetencies"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="JobPoitionType"></label>
+        <select asp-for="JobPoitionType" asp-items="Model.PositionTypes"></select>
+    </div>
+    @{
         // TODO #5 - Create <select> dropdowns for other job fields (outside of this @{ } block)
     }
 
